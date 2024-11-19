@@ -1,0 +1,131 @@
+------------ ANSIBLE --------------
+
+----------- ( 1 ) ----------------
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible
+
+sudo apt install net-tools
+sudo apt install tree
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/vars
+
+vim main.yml
+
+# Llenar main.yml
+alumno:
+  nombre: "Lucas"
+  apellido: "Finamore"
+  division: "311"
+
+
+----------- ( 2 ) ---------------
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/tasks
+
+# Edita el archivo main.yml para incluir las siguientes tareas:
+
+---
+# Crear estructura de directorios
+- name: Crear estructura de directorios
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'  # Permisos opcionales
+  loop:
+    - "/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial"
+    - "/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/alumno"
+    - "/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/equipo"
+
+# Crear archivo de datos del alumno usando template
+- name: Crear archivo datos_alumno.txt usando template
+  ansible.builtin.template:
+    src: "templates/datos_alumno.txt.j2"
+    dest: "/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/alumno/datos_alumno.txt"
+    mode: '0644'  # Permite la lectura del archivo una vez creado
+
+
+# Crear archivo de datos del equipo usando template
+- name: Generar datos_equipo.txt con template
+  ansible.builtin.template:
+    src: "templates/datos_equipo.txt.j2"
+    dest: "/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/equipo/datos_equipo.txt"
+    mode: '0644'  # Permite la lectura del archivo una vez creado
+
+
+# Crear el grupo 2PSupervisores si no existe
+- name: Crear el grupo 2PSupervisores si no existe
+  become: true
+  group:
+    name: 2PSupervisores
+    state: present
+
+
+# Configurar sudoers para grupo 2PSupervisores
+- name: Configurar sudoers para grupo 2PSupervisores
+  become: true
+  lineinfile:
+    path: /etc/sudoers
+    line: "%2PSupervisores ALL=(ALL) NOPASSWD: ALL"
+    state: present
+    validate: '/usr/sbin/visudo -cf %s'
+
+
+
+-------- (3) -----------------
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/tests/
+
+vim test.yml
+
+# Pegar en test.yml
+- hosts: localhost
+  roles:
+    2do_parcial
+
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/tests/
+
+vim inventory
+
+# Pegar en inventory
+[local]
+localhost ansible_connection=local
+
+
+------------ ( 6 ) ---------------
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/
+
+mkdir templates
+cd templates
+
+vim datos_alumno.txt.j2
+
+# Llenar datos_alumno
+Nombre: {{ alumno.nombre }}
+Apellido: {{ alumno.apellido }}
+Division: {{ alumno.division }}
+
+
+vim datos_equipo.txt.j2
+
+# Llenar datos_equipo
+Distribucion: {{ ansible_facts.distribution }}
+IPs: {{ ansible_all_ipv4_addresses }}
+Cantidad de cores: {{ ansible_processor_vcpus }}
+
+
+
+
+----------- ( 5 ) ---------------
+
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/
+
+chmod -R 755 /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible
+
+export ANSIBLE_ROLES_PATH=/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles
+
+# Limpia cache de ansible por si tira errores
+ansible-playbook --flush-cache
+
+ansible-playbook -i roles/2do_parcial/tests/inventory roles/2do_parcial/tests/test.yml

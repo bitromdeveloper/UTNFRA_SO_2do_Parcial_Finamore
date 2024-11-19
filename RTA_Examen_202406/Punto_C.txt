@@ -1,0 +1,64 @@
+---------- DOCKER -----------     
+
+https://app.docker.com/
+
+------------ ( 1 ) --------------
+
+sudo usermod -a -G docker $(whoami)
+exit     # sale de lucas
+exit     # sale de vagrant
+vagrant ssh
+sudo su - lucas
+id       # comprobar que pertenece a grupo docker
+sudo systemctl status docker     # Ver si docker esta active (running)
+
+
+------------ ( 2 ) ------------
+
+cd repogit/UTN-FRA_SO_Examenes/202406/docker
+
+vim index.html 
+
+# Modificar con datos personales
+
+----------- ( 3 ) -------------
+
+vim dockerfile
+
+# Dentro de dockerfile
+FROM nginx
+COPY index.html /usr/share/nginx/html/index.html
+
+----------- ( 4 ) ------------
+
+
+docker build -t finamorelucas/web1:latest .
+
+# Para ver si la imagen se subio
+docker image list
+
+
+--------- ( 5 ) --------------
+
+
+docker login -u finamorelucas
+
+Contraseña de docker, github tira error
+
+docker push finamorelucas/web1
+
+---------- ( 6 ) ------------
+
+vim run.sh
+
+# Pegar dentro del run.sh
+docker run  -d   -p 8080:80 -v /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/docker:/usr/share/nginx/html nginx
+
+chmod +x run.sh
+
+./run.sh
+
+http://192.168.56.3:8080/    # Para comprobar que la pagina está subida
+
+
+https://hub.docker.com/u/finamorelucas?_gl=1*pipci3*_gcl_au*MTI0MTM3NTkwMy4xNzMxNDU3NzEz*_ga*MjEyMDk5MTE0My4xNzMwODUzNTg3*_ga_XJWPQMJYHQ*MTczMTk1MTgzMy4xNC4xLjE3MzE5NTE4MzMuNjAuMC4w

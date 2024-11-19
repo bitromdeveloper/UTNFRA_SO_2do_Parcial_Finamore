@@ -1,0 +1,33 @@
+2024-06-24 18:08:06,499 p=3444395 u=upszot n=ansible | [WARNING]: A duplicate localhost-like entry was found (localhost). First found localhost was 127.0.0.1
+
+2024-06-24 18:08:06,598 p=3444395 u=upszot n=ansible | PLAY [all] **********************************************************************************************************************************************************************************************************************************
+2024-06-24 18:08:06,609 p=3444395 u=upszot n=ansible | TASK [Gathering Facts] **********************************************************************************************************************************************************************************************************************
+2024-06-24 18:08:07,746 p=3444395 u=upszot n=ansible | ok: [localhost]
+2024-06-24 18:08:07,775 p=3444395 u=upszot n=ansible | TASK [include_role : 2do_parcial] ***********************************************************************************************************************************************************************************************************
+2024-06-24 18:08:07,805 p=3444395 u=upszot n=ansible | TASK [2do_parcial : debug] ******************************************************************************************************************************************************************************************************************
+2024-06-24 18:08:07,817 p=3444395 u=upszot n=ansible | ok: [localhost] => {
+    "msg": "Tareas del 2do Parcial"
+}
+2024-06-24 18:08:07,836 p=3444395 u=upszot n=ansible | TASK [Otra tarea] ***************************************************************************************************************************************************************************************************************************
+2024-06-24 18:08:07,851 p=3444395 u=upszot n=ansible | ok: [localhost] => {
+    "msg": "Despues de la ejecucion del rol"
+}
+2024-06-24 18:08:07,885 p=3444395 u=upszot n=ansible | PLAY RECAP **********************************************************************************************************************************************************************************************************************************
+2024-06-24 18:08:07,885 p=3444395 u=upszot n=ansible | localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2024-11-18 23:56:11,851 p=11783 u=lucas n=ansible | PLAY [localhost] **************************************************************************************
+2024-11-18 23:56:11,861 p=11783 u=lucas n=ansible | TASK [Gathering Facts] ********************************************************************************
+2024-11-18 23:56:12,819 p=11783 u=lucas n=ansible | ok: [localhost]
+2024-11-18 23:56:12,838 p=11783 u=lucas n=ansible | TASK [2do_parcial : Crear estructura de directorios] **************************************************
+2024-11-18 23:56:13,129 p=11783 u=lucas n=ansible | changed: [localhost] => (item=/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial)
+2024-11-18 23:56:13,286 p=11783 u=lucas n=ansible | changed: [localhost] => (item=/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/alumno)
+2024-11-18 23:56:13,440 p=11783 u=lucas n=ansible | changed: [localhost] => (item=/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/tmp/2do_parcial/equipo)
+2024-11-18 23:56:13,451 p=11783 u=lucas n=ansible | TASK [2do_parcial : Crear archivo datos_alumno.txt usando template] ***********************************
+2024-11-18 23:56:13,992 p=11783 u=lucas n=ansible | changed: [localhost]
+2024-11-18 23:56:14,001 p=11783 u=lucas n=ansible | TASK [2do_parcial : Generar datos_equipo.txt con template] ********************************************
+2024-11-18 23:56:14,321 p=11783 u=lucas n=ansible | changed: [localhost]
+2024-11-18 23:56:14,330 p=11783 u=lucas n=ansible | TASK [2do_parcial : Crear el grupo 2PSupervisores si no existe] ***************************************
+2024-11-18 23:56:14,588 p=11783 u=lucas n=ansible | ok: [localhost]
+2024-11-18 23:56:14,598 p=11783 u=lucas n=ansible | TASK [2do_parcial : Configurar sudoers para grupo 2PSupervisores] *************************************
+2024-11-18 23:56:14,853 p=11783 u=lucas n=ansible | changed: [localhost]
+2024-11-18 23:56:14,872 p=11783 u=lucas n=ansible | PLAY RECAP ********************************************************************************************
+2024-11-18 23:56:14,872 p=11783 u=lucas n=ansible | localhost                  : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   

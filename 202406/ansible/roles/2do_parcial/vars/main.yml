@@ -1,0 +1,6 @@
+---
+# vars file for 2do_parcial
+alumno:
+  nombre: "Lucas"
+  apellido: "Finamore"
+  division: "311"
