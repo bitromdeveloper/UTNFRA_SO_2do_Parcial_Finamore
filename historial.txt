@@ -1,0 +1,117 @@
+vim preparacion.sh
+sudo chmod +x preparacion.sh 
+./preparacion.sh 
+cd repogit/
+vim Punto_A.sh
+chmod +x Punto_A.sh 
+./Punto_A.sh 
+sudo swapon --show
+sudo usermod -a -G docker $(whoami)
+exit
+id
+sudo systemctl status docker
+cd repogit/UTN-FRA_SO_Examenes/202406/docker
+vim index.html
+vim dockerfile
+docker build -t finamorelucas/web1:latest .
+sudo chmod +r /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/bash_script/Lista_Usuarios.txt
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/bash_script/
+vim finamoreAltaUser-Groups.sh
+sudo cp finamoreAltaUser-Groups.sh /usr/local/bin/
+cd /usr/local/bin
+sudo chmod 777 finamoreAltaUser-Groups.sh
+./finamoreAltaUser-Groups.sh
+cut -d: -f1 /etc/passwd
+cut -d: -f1 /etc/group
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible
+sudo apt install net-tools
+sudo apt install tree
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/vars
+vim main.yml
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/tasks
+ls
+vim main.yml 
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/tests/
+vim test.yml 
+vim inventory 
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles/2do_parcial/
+mkdir templates
+cd templates
+vim datos_alumno.txt.j2
+vim datos_equipo.txt.j2
+cd /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/
+chmod -R 755 /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible
+export ANSIBLE_ROLES_PATH=/home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ansible/roles
+ansible-playbook -i roles/2do_parcial/tests/inventory roles/2do_parcial/tests/test.yml
+cd /home/lucas/repogit
+mkdir UTNFRA_SO_2do_Parcial_finamore
+cp -r /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ ./202406/
+RTA_FOLDER="RTA_Examen_$(date +%Y%m%d)"
+cp -r /home/lucas/$RTA_FOLDER ./
+ls
+rm Punto_A.sh 
+cd RTA_Examen_20241118/
+ls
+vim Punto_A.sh 
+vim Punto_B.sh
+vim Punto_D.sh
+vim Punto_D.txt
+vim Punto_C.sh
+vim Punto_C.txt
+cd ..
+ls
+cd UTNFRA_SO_2do_Parcial_finamore/
+ls
+pws
+pwd
+cp -r /home/lucas/repogit/UTN-FRA_SO_Examenes/202406/ ./202406/
+ls
+RTA_FOLDER="RTA_Examen_$(date +%Y%m%d)"
+cp -r /home/lucas/RTA_Examen_20241118 ./
+ls
+cd RTA_Examen_20241118/
+ls
+cat Punto_A.sh 
+cat Punto_B.sh 
+history -a
+$HOME/.bash_history
+sudo $HOME/.bash_history
+cd ..
+ls
+cd ..
+ls
+cd RTA_Examen_20241118/
+ls
+cat Punto_A.sh 
+cd ..
+ls
+pwd
+cd RTA_Examen_20241118/
+ẃd
+pwd
+cd ..
+ls
+cd UTNFRA_SO_2do_Parcial_finamore/
+ls
+pwd
+cp -r /home/lucas/repogit/RTA_Examen_20241118 /home/lucas/repogit/UTNFRA_SO_2do_Parcial_finamore
+cd repogit/
+ls
+cd UTNFRA_SO_2do_Parcial_finamore/
+ls
+cd RTA_Examen_20241118/
+ls
+cd ..
+history -a
+$HOME/.bash_history
+tree
+cd $HOME
+ls -la
+sudo chmod +x .bash_history
+sudo chmod +x bash_history
+sudo chmod 600 .bash_history 
+history -a
+sudo chmod 600 .bash_history 
+cd repogit/
+cd UTNFRA_SO_2do_Parcial_finamore/
+ls
